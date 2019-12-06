@@ -26,6 +26,10 @@ class IntegrityCheck
 
     public function generateFileHashes($dir, $verbose = false)
     {
+        if(!is_dir($dir)){
+            throw new Exception("Directory does not exist");
+        }
+
         $fileInfo = scandir($dir);
         $allFileLists = [];
 
