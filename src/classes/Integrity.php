@@ -5,7 +5,6 @@ namespace Integrity;
 class IntegrityCheck
 {
     private $filesToIgnore = [];
-    private $count = 0;
 
     public function __construct($filesToIgnore = [])
     {
@@ -21,7 +20,6 @@ class IntegrityCheck
         if ($verbose) {
             echo 'Searching '. $dir2 . PHP_EOL;
         }
-        $this->count = 0;
         $dir2 = $this->generateFileHashes($dir2, $verbose = true);
         return $this->compareArray($dir1, $dir2);
     }
@@ -32,7 +30,6 @@ class IntegrityCheck
         $allFileLists = [];
 
         foreach ($fileInfo as $folder) {
-            $this->count++;
             if ($folder !== '.' && $folder !== '..') {
                 if (
                 is_dir($dir . DIRECTORY_SEPARATOR . $folder) === true) {
@@ -42,11 +39,6 @@ class IntegrityCheck
                         continue;
                     }
                     $allFileLists[$folder] = md5_file($dir . DIRECTORY_SEPARATOR . $folder);
-                }
-            }
-            if ($verbose) {
-                if ($this->count % 100 == 0) {
-                    echo 'Found:' . $this->count . ' files' . PHP_EOL;
                 }
             }
         }
