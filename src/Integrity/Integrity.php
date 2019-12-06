@@ -37,7 +37,7 @@ class IntegrityCheck
             if ($folder !== '.' && $folder !== '..') {
                 if (
                 is_dir($dir . DIRECTORY_SEPARATOR . $folder) === true) {
-                    $allFileLists[$dir . DIRECTORY_SEPARATOR . $folder] = $this->generateFileHashes($dir . DIRECTORY_SEPARATOR . $folder, $verbose);
+                    $allFileLists[$folder] = $this->generateFileHashes($dir . DIRECTORY_SEPARATOR . $folder, $verbose);
                 } else {
                     if (in_array($folder, $this->filesToIgnore)) {
                         continue;
